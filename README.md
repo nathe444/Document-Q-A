@@ -16,10 +16,10 @@ Instructions on how to install and set up your project locally. For example:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/nathe444/Document-Q-A.git
 
 # Navigate into the directory
-cd your-repo-name
+cd Document-Q-A
 
 # Create a virtual environment (optional)
 python -m venv venv
