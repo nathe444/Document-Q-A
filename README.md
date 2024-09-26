@@ -1,7 +1,4 @@
 ﻿# Document-Q-A
-# Project Title
-
-A brief description of your project, its purpose, and what it does.
 
 ## Table of Contents
 
