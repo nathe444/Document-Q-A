@@ -8,9 +8,6 @@
 4. [Contact](#contact)
 
 ## Installation
-
-Instructions on how to install and set up your project locally. For example:
-
 ```bash
 # Clone the repository
 git clone https://github.com/nathe444/Document-Q-A.git
@@ -35,7 +32,6 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
-Example
 Upload a PDF or text document using the provided file uploader.
 Ask questions related to the content of the document.
 The chatbot will respond based on the document's information.
