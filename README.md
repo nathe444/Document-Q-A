@@ -43,4 +43,4 @@ Real-time question answering using LangChain and GROQ.
 Contextual responses based on document content.
 
 ## Contact
-Nathe - natnaelm552@gmail.com
+Email - natnaelm552@gmail.com
