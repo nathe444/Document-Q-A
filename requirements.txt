@@ -8,11 +8,11 @@
 # python-dotenv
 # PyPDF2
 
-streamlit=1.38.0
+streamlit
 langchain-groq
 python-dotenv
 pypdf==5.0.0
-faiss-cpu=1.8.0.post1
-huggingface-hub=0.25.0
-langchain=0.3.0
+faiss-cpu
+huggingface-hub
+langchain
 langchain-community
