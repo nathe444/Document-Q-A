@@ -1,9 +1,16 @@
-streamlit
-langchain
-langchain_groq
-faiss-cpu
-huggingface-hub
-transformers
-sentence-transformers
+# streamlit
+# langchain
+# langchain_groq
+# faiss-cpu
+# huggingface-hub
+# transformers
+# sentence-transformers
+# python-dotenv
+# PyPDF2
+
+streamlit>=1.0.0
+langchain-groq
 python-dotenv
 PyPDF2
+faiss-cpu
+huggingface-hub
