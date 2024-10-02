@@ -17,7 +17,6 @@ import docx
 load_dotenv()
 os.environ['GROQ_API_KEY'] = os.getenv('GROQ_API_KEY')
 
-# Custom CSS for better styling
 st.markdown("""
     <style>
         body {
@@ -100,17 +99,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# App title and description
 st.markdown("<h1>📝 Document Q&A Chatbot</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Upload your document (PDF, DOCX, or TXT) and ask questions to get instant answers!</p>", unsafe_allow_html=True)
 
-# File uploader section
 uploaded_file = st.file_uploader("Upload your document (PDF, DOCX, or TXT)", type=['pdf', 'docx', 'txt'], label_visibility='collapsed')
 
-# Adding space between the file uploader and the text input
 st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
 
-# Document handler class
 class Document:
     def __init__(self, content):
         self.page_content = content
@@ -139,34 +134,33 @@ if uploaded_file:
             documents = [Document(text)]
 
     if documents:
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        final_documents = text_splitter.split_documents(documents)
+        with st.spinner('Splitting documents and embedding...'):
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+            final_documents = text_splitter.split_documents(documents)
 
-        embeddings = HuggingFaceEmbeddings()
-        vectors = FAISS.from_documents(final_documents, embeddings)
+            embeddings = HuggingFaceEmbeddings()
+            vectors = FAISS.from_documents(final_documents, embeddings)
 
-        llm = ChatGroq(temperature=0.5, model_name="mixtral-8x7b-32768")
+            llm = ChatGroq(temperature=0.5, model_name="mixtral-8x7b-32768")
 
-        prompt = ChatPromptTemplate.from_template(
-            """
-            Answer the question based on the provided context.
-            <context>
-            {context}
-            </context>
-            Question: {input}
-            """
-        )
+            prompt = ChatPromptTemplate.from_template(
+                """
+                Answer the question based on the provided context.
+                <context>
+                {context}
+                </context>
+                Question: {input}
+                """
+            )
 
-        document_chain = create_stuff_documents_chain(llm, prompt)
-        retriever = vectors.as_retriever()
-        retrieval_chain = create_retrieval_chain(retriever, document_chain)
+            document_chain = create_stuff_documents_chain(llm, prompt)
+            retriever = vectors.as_retriever()
+            retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
         st.success("Document processed! Now ask your questions.")
 
-# Question input section (Always visible)
 question = st.text_input("Ask a question about your document:")
 
-# Answer generation
 if question:
     if documents:
         start = time.process_time()
@@ -175,7 +169,6 @@ if question:
         st.write(f"**Answer:** {response['answer']}")
         st.write(f"_Response generated in {time.process_time() - start:.2f} seconds_")
 
-        # Display related document context
         with st.expander("View related document context"):
             for i, doc in enumerate(response['context']):
                 st.write(f"**Context {i+1}:** {doc.page_content}")
@@ -183,5 +176,5 @@ if question:
     else:
         st.write("**Note:** Please upload a document to ask document-related questions.")
 
-# Footer
+
 st.markdown("<hr><p class='footer'>Built with 💙 using LangChain & Groq</p>", unsafe_allow_html=True)
