@@ -16,3 +16,4 @@ faiss-cpu
 huggingface-hub
 langchain
 langchain-community
+python-docx
