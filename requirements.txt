@@ -17,3 +17,5 @@ huggingface-hub
 langchain
 langchain-community
 python-docx
+transformers
+sentence-transformers
