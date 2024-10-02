@@ -52,7 +52,6 @@ st.markdown("""
             margin: 0 auto;
         }
             
-
         .stFileUploader {
             margin-top: 10px;
             padding: 10px;
@@ -85,16 +84,16 @@ st.markdown("""
                 font-size: 14px;
             }
         }
-        
+
         .footer {
             text-align: center;
             color: #839ab2;
-            margin-top: 40px;
+            margin-top: 20px;
             font-size: 16px;
         }
 
         hr {
-            margin-top: 30px;
+            margin-top: 110px;
             border: none;
             border-top: 1px solid #e0e0e0;
         }
@@ -107,6 +106,9 @@ st.markdown("<p style='text-align: center;'>Upload your document (PDF, DOCX, or 
 
 # File uploader section
 uploaded_file = st.file_uploader("Upload your document (PDF, DOCX, or TXT)", type=['pdf', 'docx', 'txt'], label_visibility='collapsed')
+
+# Adding space between the file uploader and the text input
+st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
 
 # Document handler class
 class Document:
